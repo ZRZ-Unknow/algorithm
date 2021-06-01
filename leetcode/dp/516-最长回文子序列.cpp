@@ -17,7 +17,10 @@ int longestPalindromeSubseq(string s) {
     vector<vector<int>> f(len, vector<int>(len));
     for(int i=len-1;i>=0;i--){
         f[i][i] = 1;
-        for(int j=i+1;j<len;j++){
+        if(i<len-1){
+            f[i][i+1] = (s[i]==s[i+1])?2:1;
+        }
+        for(int j=i+2;j<len;j++){
             if(s[i]==s[j]){
                 f[i][j] = f[i+1][j-1] + 2;
             }else{
